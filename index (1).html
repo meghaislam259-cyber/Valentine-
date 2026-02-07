@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(180deg, #fff1f6, #ffd6e8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Comic Sans MS", Arial;
+  overflow: hidden;
+  text-align: center;
+}
+
+h1 {
+  color: #ff5c8a;
+  animation: pop 1.5s ease;
+}
+
+p {
+  color: #ff6f91;
+  font-size: 18px;
+}
+
+@keyframes pop {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+button {
+  padding: 12px 28px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  margin: 10px;
+}
+
+#yes {
+  background: #ff5c8a;
+  color: white;
+}
+
+#no {
+  background: #fff;
+}
+
+.cute-img {
+  width: 160px;
+  margin-bottom: 15px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.heart {
+  position: absolute;
+  font-size: 22px;
+  animation: rise 6s linear;
+}
+
+@keyframes rise {
+  from { bottom: -20px; opacity: 0; }
+  to { bottom: 100%; opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- cute pinterest-style illustration -->
+<img class="cute-img" src="https://i.imgur.com/3ZQ3ZKx.png" alt="cute holding hearts">
+
+<h1>Will you be my Valentine? 💌</h1>
+<p>(be honest 😳)</p>
+
+<button id="yes">YES 💖</button>
+<button id="no">NO 😭</button>
+
+<script>
+const yesBtn = document.getElementById("yes");
+const noBtn = document.getElementById("no");
+
+// no button runs away
+noBtn.addEventListener("mouseover", () => {
+  noBtn.style.position = "absolute";
+  noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+  noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+});
+
+// YES → heart explosion + final message
+yesBtn.addEventListener("click", () => {
+  document.body.innerHTML = `
+    <h1 style="color:#ff5c8a;">
+      💖💥 YAYYYYY 💥💖<br><br>
+      you're stuck with me for life now<br>
+      dear tahmeer! 😼💞
+    </h1>
+  `;
+
+  // heart explosion
+  for (let i = 0; i < 80; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = Math.random() * window.innerHeight + "px";
+    heart.style.fontSize = (12 + Math.random() * 30) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }
+});
+
+// floating hearts background
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💗";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 400);
+</script>
+
+</body>
+</html>
